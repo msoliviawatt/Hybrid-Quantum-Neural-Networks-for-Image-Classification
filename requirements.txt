@@ -1,0 +1,28 @@
+# data science core
+numpy >= 1.21.0
+pandas >= 1.3.0
+matplotlib >= 3.4.0
+seaborn >= 0.11.0
+scipy >= 1.7.0
+midiutil >= 1.2.0
+
+# jupyter stuff
+jupyter >= 1.0.0
+ipykernel >= 6.0.0
+ipython >= 7.0.0
+jupytext >= 1.17.3
+
+# for pdf conversions
+nbconvert >= 6.0.0
+nbconvert[webpdf] >= 6.0.0
+
+# progress bars
+tqdm >= 4.62.0
+sounddevice >= 0.4.0
+
+# machine learning specific
+scikit-learn >= 0.24.0
+scikit-image >= 0.18.0
+torch >= 1.9.0
+torchvision >= 0.10.0
+kagglehub >= 1.0.0
