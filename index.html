@@ -5,44 +5,239 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Hybrid Quantum Neural Networks for Image Classification</title>
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 40px auto; max-width: 900px; padding: 0 16px; line-height: 1.5; }
-    .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 16px; margin: 16px 0; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 40px auto; max-width: 900px; padding: 0 16px; line-height: 1.5; background: #f6f1e8;}
+    .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 16px; margin: 16px 0; background: #fffdf8; box-shadow: 0 2px 6px rgba(0,0,0,0.2);}
+    .sub-card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 16px; margin: 16px 0; background: #fffdfb; box-shadow: 0 2px 6px rgba(0,0,0,0.4);}
     iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 12px; }
-    a.button { display: inline-block; padding: 10px 14px; border-radius: 10px; border: 1px solid #ddd; text-decoration: none; margin-right: 8px; }
+    a.button { display: inline-block; padding: 10px 14px; border-radius: 10px; border: 1px solid #ddd; text-decoration: none; margin-right: 8px;}
   </style>
 </head>
 <body>
   <h1>Hybrid Quantum Neural Networks for Image Classification</h1>
-  <p>As we reach limits with classical compute power, it becomes necessary to investiate methods that execute faster and are capable of solving more difficult problems. 
-    By applying concepts from quantum mechanics to the computing space, we can leverage the power of superposition, entanglement, and interference to parallelize operations and operate at higher dimensions. </p>
 
   <div class="card">
-    <h2>Video</h2>
-    <!-- Replace VIDEO_ID with your YouTube video ID -->
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+    <h2>Project Overview</h2>
+    <div class="sub-card">
+      <img src="Photos/collage_of_cars.png" alt="Sample vehicles labled with their make, model and year taken from the VMMRdb dataset" style="display: block; width: 100%;"/>
+    </div>
+    <p>
+      As we reach limits with classical compute power, it becomes necessary 
+      to investigate methods that execute faster and are capable of solving 
+      more difficult problems. By applying concepts from quantum mechanics to 
+      the computing space, we can leverage the power of superposition, entanglement, 
+      and interference to parallelize operations and operate at higher dimensions. 
+    </p>
+
+    <p>
+      In this project, we compare classical machine learning with quantum machine learning 
+      through image-based car model classification algorithms. Specifically, our models predict 
+      vehicle make, model and year. This problem being chosen because it's already sufficiently 
+      difficult for a classic approach using convolutional neural networks due to the minute level 
+      of detail a model would need to extract to differentiate between model years. Our goal with this 
+      project is to determine whether quantum-enhanced models can achieve performance comparable to 
+      or superior to classical approaches in the context of image classification.
+    </p>
+
+    <div class="sub-card">
+      <p>
+        We explored two separate approaches:
+      </p>
+      <ul>
+        <li>
+          A smaller-scale experiment comparing a classical CNN against a hybrid quantum model using 
+          a quanvolutional preprocessing layer.
+        </li>
+        <li>
+          A larger-scale experiment using a ResNet-50 backbone combined with a variational quantum
+          circuit head training on a combined Stanford Cars and VMMRdb dataset
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Datasets</h2>
+    <h3>Stanford Cars Dataset</h3>
+    <p>
+      The Stanford Cars dataset contains 16,185 images across 196 vehicle classes. Each class generally
+      represents a specific vehicle make, model and year combination.
+    </p>
+
+    <h3>VMMRdb Dataset</h3>
+    <p>
+      The vehicle Make and Model Recognition Database (VMMRdb) contains 291,752 images across 9,170 classes.
+      The dataset includes variation in lighting conditions, image quality, and camera angle. Though
+      generally the same angles are used across classes.
+    </p>
+
+    <div class="sub-card">
+      <h3>Dataset Processing</h3>
+      <p>
+        This normalization was done solely on the larger-scale normalization. The smaller-scale explored 3-10 classes 
+        in the Stanford Cars dataset, so this normalization wasn't necessary.
+      </p>
+      <ul>
+        <li>
+          Normalized class labels across both datasets.
+        </li>
+        <li>
+          Removed trim, body style and other identifiers that weren't considered make, or model in order to align overlapping
+          classes
+        </li>
+        <li>
+          Filtered out classes with fewer than 40 images
+        </li>
+        <li>
+          Limited each class to a maximum of 100 images per dataset to reduce imbalance.
+        </li>
+        <li>
+          Our final combined dataset contained <strong>2023 classes</strong>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sub-card">
+      <h3>Data Augmentation</h3>
+      <p>
+        This was generally identical across both experiments. We even explored the impact of RGB channel normalization in the small experiment.
+        All of this augmentation was in an effort to decrease the chance of overfitting, improve convergence, and create a more robust dataset.
+      </p>
+      <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+        <ul>
+          <li>
+            Resized images to 224 x 224
+          </li>
+          <li>
+            Added random horizontal flips
+          </li>
+          <li>
+            Added random color jitter
+          </li>
+          <li>
+            Added random rotation
+          </li>
+          <li>
+            Added RGB channel normalization
+          </li>
+        </ul>
+        <div class="sub-card">
+          <img src="Photos/augmented_data_combined_dataset.png" alt="Grid of cars showing augmentation: color jitter, slight rotation and more" style="width: 100%; max-width: 300px;" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card"> 
+    <h2>Small-Scale Experiment Architecture</h2>
+    <p>...</p>
+  </div>
+
+  <div class="card"> 
+    <h2>Larger-Scale Experiment Architecture</h2>
+    <h3>Classical Baseline ResNet-50 Model</h3>
+    <p>
+      We used a ResNet-50 convolutional neural network as the classical baseline.
+      At their core, ResNet architectures utilize residual connections to improve gradient
+      flow, which enables deeper networks while mitigating the vanishing gradient problem.
+      To improve computational efficiency, ResNet models also use bottleneck blocks that 
+      intentionally reduce channel dimensionality before doing to bulk of the convolution computation.
+    </p>
+    <h3>Hybrid Quantum Neural Network (HQNN)</h3>
+    <p>
+      Our hybrid architecture combines a pretrained ResNet-50 backbone with a 
+      variational quantum circuit implemented using PennyLane. The ResNet-50 acts
+      as a feature extractor, producing a 2048-dimensional feature vector that
+      is then projected down to the number of qubits our circuit uses. That number
+      being 6 in our case. Those 6 features are then encoded into the quantum circuit through
+      parameterized rotation gates and then mapped back into the classical feature space to 
+      produce the final classification outputs. 
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Results</h2>
+    <h3>Larger Experiment</h3>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+      <div class="sub-card" style="flex: 0 0 150px;">
+        <h4>ResNet-50 Top-1 Accuracy</h4>
+        <p><strong>35.78%</strong></p>
+      </div>
+      <div class="sub-card" style="flex: 0 0 150px;">
+        <h4>ResNet-50 Top-5 Accuracy</h4>
+        <p><strong>65.50%</strong></p>
+      </div>
+      <div class="sub-card" style="flex: 0 0 150px;">
+        <h4>HQNN Top-1 Accuracy</h4>
+        <p><strong>0.21%</strong></p>
+      </div>
+      <div class="sub-card" style="flex: 0 0 150px;">
+        <h4>HQNN Top-5 Accuracy</h4>
+        <p><strong>0.81%</strong></p>
+      </div>
+    <p>The classical ResNet-50 model significantly outperformed the hybrid HQNN on the large-scale dataset. Fine-tuninng of a 
+      pretrained ResNet-50 model with our quantum circuit head was tried with minimal gain, only a 0.41% improvement above an 
+      HQNN model not using fine-tuning. Overall, the projection from a 2048 feature space down to a 6 dimentional feature space is 
+      likely the cause of this drop in performance. In our future work we consider some ideas of how to potentially improve this.
+    </p>
+
+    <div class="sub-card">
+      <img src="Photos/Validation_Acc_HQNN_CNN.png" alt="CNN and HQNN Validation Accuracy over Epochs" style="width: 100%; max-width: 300px;" />
+    </div>
+    <div class="sub-card">
+      <img src="Photos/Training_Validation_Loss_HQNN_CNN.png" alt="CNN and HQNN Validation Loss over Epochs" style="width: 100%; max-width: 300px;" />
+    </div>
+  </div>
+    <p>The validation accuracy, validation loss, and training loss remains constant while training the HQNN, not improving much at all. The validation accuracy, validation
+      loss and training loss for the CNN/ResNet-50 model do improve for around 20 epochs before the model actually begins to overfit as shown by the increase
+      in validation loss and the jitteriness of the validation accuracy after that point. </p> 
+
+
+    <h3>Smaller Experiment</h3>
+    <p>...</p>
+  </div>
+
+  <div class="card">
+    <h2>Future Work</h2>
+
+    <ul>
+      <li>
+        Adding quanvolutional layers into the larger ResNet-based model instead of using a VQC head.
+      </li>
+      <li>
+        Using larger quantum circuits with more qubits
+      </li>
+      <li>
+        Investigating a multi-headed quantum circuit approach
+      </li>
+      <li>
+        Using a more robust backbone, like a ResNet-152 model
+      </li>
+    </ul>
   </div>
 
   <div class="card">
     <h2>Links</h2>
     <!-- Replace these URLs -->
     <p>
-      <a class="button" href="https://example.com/paper.pdf" target="_blank" rel="noopener">Paper (PDF)</a>
+      <a class="button" href="Machine_Learning_Final_Report.pdf" target="_blank" rel="noopener">Paper (PDF)</a>
       <a class="button" href="https://github.com/msoliviawatt/Hybrid-Quantum-Neural-Networks-for-Image-Classification" rel="noopener">Code (GitHub)</a>
       <a class="button" href="https://virginiatech-my.sharepoint.com/:p:/g/personal/oliviawatt_vt_edu/IQDtHYNjGescTK9ghvDkBZYmAc5obbNrT5S4f_Db-q9szK4?e=myZ7Ia" target="_blank" rel="noopener">Slides (Powerpoint)</a>
     </p>
   </div>
 
   <div class="card">
-    <h2>Abstract</h2>
-    <p>In this project we compare classical machine learning to quantum machine learning through simple, image-based car model classification algorithms. Our goal with this project is to determine whether quantum-enhanced models can achieve comparable or superior performance to classical approaches in the context of image classification.
-.</p>
-  </div>
-
-  <div class="card">
     <h2>Citation</h2>
-    <pre>
-Olivia Watt, Lucas Shaodayn, Thomas Nguyen. "Hybrid Quantum Neural Networks for Image Classification" 2026.
+    <pre style="overflow-wrap: break-word; white-space: pre-wrap;">
+      Olivia Watt, Lucas Shadoyan, Thomas Nguyen. "Hybrid Quantum Neural Networks for Image Classification" 2026.
     </pre>
   </div>
+      <footer style="text-align: center;">
+      CS 4824 Machine Learning • Virginia Tech • Spring 2026
+    </footer>
 </body>
 </html>
+
+  <!-- <div class="card">
+    <h2>Video</h2>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+  </div> -->
