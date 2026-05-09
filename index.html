@@ -130,7 +130,24 @@
   <div class="card"> 
     <h2>Quanvolutional Layer Architecture</h2>
     <img src="Photos/quanvolutional_archtecture.png" alt="Quanvolutional Layer Architecture" style="width: 100%; max-width: 300px;" />
-    <p>...</p>
+    <p>The operation of the quanvolutional layer follows a pipeline similar to that of a classical convolution. 
+      A small subsection of the image, denoted as <i>u<sub>x</sub></i>, is first selected from the input image. 
+      This local subsection may be, for example, a 2×2 or 3×3 patch of pixels. The values in this patch are then encoded into a quantum state through an encoding 
+      function <i>e</i>, producing an initialized quantum state <i>i<sub>x</sub> = e(u<sub>x</sub>)</i>. After encoding, the quantum state is processed by a quantum 
+      circuit <i>q</i>, producing an output quantum state <i>o<sub>x</sub> = q(i<sub>x</sub>)</i>. Finally, the information contained in this output quantum state is decoded 
+      back into a classical scalar value through a decoding function <i>d</i>, yielding the final quanvolutional feature value <i>f<sub>x</sub> = d(o<sub>x</sub>)</i>. 
+      This transformation can be summarized as <i>f<sub>x</sub> = Q(u<sub>x</sub>, e, q, d)</i>, where <i>Q</i> represents the full quanvolutional filter transformation. 
+    </p>
+
+    <p>
+      Conceptually, the quanvolutional layer attempts to use the high-dimensional structure of quantum mechanics to generate feature transformations that may be difficult to reproduce 
+      classically. In the same way that classical convolutional filters detect local image patterns, the quantum circuits act as feature detectors operating on local image regions. 
+      However, instead of simple matrix multiplications and additions, the local data undergoes a quantum evolution through entangling gate operations and quantum superposition. 
+      In our implementation, we specifically use random quantum circuits for these transformations in order to establish a baseline implementation of the architecture. An important aspect of the 
+      quanvolutional approach is that the quantum circuits operate only on small local regions of the image rather than on the entire image at once. This design choice significantly reduces 
+      the required quantum resources. Because each local patch contains only a small number of pixels, only a small number of qubits are needed per quantum filter. 
+      This makes the approach potentially suitable for noisy intermediate-scale quantum (NISQ) hardware, since the circuits can remain relatively shallow and require little or no error correction.
+    </p>
   </div>
 
   <div class="card"> 
