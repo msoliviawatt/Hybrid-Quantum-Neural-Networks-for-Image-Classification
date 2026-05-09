@@ -121,7 +121,7 @@
           </li>
         </ul>
         <div class="sub-card">
-          <img src="Photos/augmented_data_combined_dataset.png" alt="Grid of cars showing augmentation: color jitter, slight rotation and more" style="width: 100%; max-width: 300px;" />
+          <img src="Photos/augmented_data_combined_dataset.png" alt="Grid of cars showing augmentation: color jitter, slight rotation and more" style="display: block; width: 100%;" />
         </div>
       </div>
     </div>
@@ -151,7 +151,7 @@
   </div>
 
   <div class="card"> 
-    <h2>Larger-Scale Experiment Architecture</h2>
+    <h2>Combined Dataset Architecture</h2>
     <h3>Classical Baseline ResNet-50 Model</h3>
     <p>
       We used a ResNet-50 convolutional neural network as the classical baseline.
@@ -174,7 +174,7 @@
 
   <div class="card">
     <h2>Results</h2>
-    <h3>Larger Experiment</h3>
+    <h3>Combined Dataset</h3>
     <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
       <div class="sub-card" style="flex: 0 0 150px;">
         <h4>ResNet-50 Top-1 Accuracy</h4>
@@ -210,8 +210,14 @@
       in validation loss and the jitteriness of the validation accuracy after that point. </p> 
 
 
-    <h3>Smaller Experiment</h3>
-    <p>...</p>
+    <h3>Subset Results</h3>
+    <p>With the simulation for a QNN on a small subset of data, it was evident that adding the quanvolutional layer had noticeable improvements over a solely classical implementation. 
+      However, this was only tested for a very specific case -- the case of having an insanely small dataset. While we did test on a larger dataset and see that 
+      the hybrid model was actually hurting performance, there is still room to investigate this, as the HQNN used with the combined dataset was not based on the same 
+      implementation as the small-scale model, i.e. the two models had different architectures. We initially didn't think this would have an impact because we 
+      thought that just the <i>concept</i> of adding a quantum circuit to a neural network would improve performance, but after firsthand experience 
+      tweaking the model construction and layers, it is clear that overall performance depends on a variety of factors, architecture included.  
+    </p>
   </div>
 
   <div class="card">
